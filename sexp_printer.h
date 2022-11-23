@@ -18,6 +18,11 @@ class SexpPrinter
   void endList();
   void addComment(const std::string &comment);
   void lineBreak();
+  void startList(const std::string &first)
+  {
+    startList();
+    printAtom(first);
+  }
 
   friend SexpPrinter &operator<<(SexpPrinter &sp, const std::string &atom)
   {
