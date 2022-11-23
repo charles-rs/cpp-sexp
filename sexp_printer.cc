@@ -132,3 +132,12 @@ void SexpPrinter::lineBreak()
     throw("cannot add line break inside of S-expression");
   o << std::endl;
 }
+
+
+void SexpPrinter::startList(const std::string &first)
+{
+  startList();
+  printAtom(first);
+}
+
+SexpPrinter::SexpPrinter(std::ostream &o, unsigned int margin) :o(o), margin(margin) {}

@@ -12,17 +12,13 @@
 class SexpPrinter
 {
  public:
- SexpPrinter(std::ostream &o, unsigned int margin) :o(o), margin(margin) {}
+  SexpPrinter(std::ostream &o, unsigned int margin);
   void startList();
   void printAtom(const std::string &atom);
   void endList();
   void addComment(const std::string &comment);
   void lineBreak();
-  void startList(const std::string &first)
-  {
-    startList();
-    printAtom(first);
-  }
+  void startList(const std::string &first);
 
   friend SexpPrinter &operator<<(SexpPrinter &sp, const std::string &atom)
   {
