@@ -18,22 +18,17 @@ class SexpPrinter
   void endList();
   void addComment(const std::string &comment);
   void lineBreak();
-  
+
+  friend SexpPrinter &operator<<(SexpPrinter &sp, const std::string &atom)
+  {
+    sp.printAtom(atom);
+    return sp;
+  }
  private:
   enum class State
   {
     FRESH, ONE_LINE, MULTI_LINE
   };
-  friend std::ostream& operator << (std::ostream &o, State s)
-  {
-    switch(s)
-      {
-      case SexpPrinter::State::FRESH: o << "FRESH"; break;
-      case SexpPrinter::State::ONE_LINE: o << "ONE_LINE"; break;
-      case SexpPrinter::State::MULTI_LINE: o << "MULTI_LINE"; break;
-      }
-    return o;
-  }
   struct PrintState
   {
     int idnt;
